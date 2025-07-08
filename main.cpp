@@ -8,10 +8,9 @@ int main() {
     std::cin >> fileName;
     std::string cloneURL;
 
-    std::cout << "Enter URL: " << "\n";
-    std::cin >> cloneURL;
 
     if (std::ofstream file(fileName); file.is_open()) {
+        std::string commandRouteRunnable;
 
         file << "git clone " << cloneURL;
         file << "git add . \n";
@@ -20,13 +19,46 @@ int main() {
 
         file.close();
 
-        const std::string commandRunnable = "chmod +x " + fileName;
-        const std::string commandRunnable1 = "./ " + fileName;
+        std::cout << "Enter Route: " << "\n";
+        std::cin >> commandRouteRunnable;
+
+        if (commandRouteRunnable == "/Clone") {
+
+            std::cout << "Enter Github URL: " << "\n";
+            std::cin >> cloneURL;
+
+            ShellExecuteA(nullptr,
+            "open",cloneURL.c_str(),
+            nullptr, nullptr, SW_SHOWDEFAULT);
+        }
+
+        else if (commandRouteRunnable == "Add") {
+
+            ShellExecuteA(nullptr,
+            "open", "git add .",
+            nullptr, nullptr, SW_SHOWDEFAULT);
+
+        }
+
+        else if (commandRouteRunnable == ".") {
 
 
-        ShellExecuteA(nullptr,
+            const std::string commandRunnable = "chmod +x " + fileName;
+            const std::string commandRunnable1 = "./ " + fileName;
+
+            ShellExecuteA(nullptr,
             "open", commandRunnable.c_str(),
             nullptr, nullptr, SW_SHOWDEFAULT);
+
+
+            ShellExecuteA(nullptr,
+            "open", commandRunnable1.c_str(),
+            nullptr, nullptr, SW_SHOWDEFAULT);
+
+        }
+
+
+
 
 
     }
