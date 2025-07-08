@@ -1,9 +1,9 @@
 ﻿#include <iostream>
 #include <fstream>
+#include <Windows.h>
 
 
 int main() {
-
     std::string fileName;
     std::cin >> fileName;
     std::string cloneURL;
@@ -20,7 +20,16 @@ int main() {
 
         file.close();
 
+        const std::string commandRunnable = "chmod +x " + fileName;
+        const std::string commandRunnable1 = "./ " + fileName;
+
+
+        ShellExecuteA(nullptr,
+            "open", commandRunnable.c_str(),
+            nullptr, nullptr, SW_SHOWDEFAULT);
+
+
     }
 
-}
 
+}
