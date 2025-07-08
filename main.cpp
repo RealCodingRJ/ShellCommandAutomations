@@ -3,6 +3,7 @@
 
 
 int main() {
+
     std::string fileName;
     std::cin >> fileName;
     std::string cloneURL;
@@ -17,9 +18,7 @@ int main() {
         file << "git commit -m 'Added Code' \n";
         file << "git push \n";
 
-
         file.close();
-
 
     }
 
